@@ -1,4 +1,13 @@
 body {
     background-color: dodgerblue;
 }
+.title{
+    color: white;
+    text-align: center;
+}
+
+.cards-for-feed{
+    text-align: center;
+    overflow-y: scroll;
+}
 
