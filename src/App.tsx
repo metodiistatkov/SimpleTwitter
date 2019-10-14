@@ -1,14 +1,44 @@
 import * as React from 'react';
 import './App.css';
+import {Button} from 'react-bootstrap';
 
 
+class Status extends React.Component<{}, {textStatus: string;}>{
+  constructor(props: String){
+    super(props);
+    this.state = {
+      textStatus: ""
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+  handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+
+  }
+
+  handleChange(e: React.ChangeEvent<HTMLTextAreaElement>){
+    this.setState({textStatus: e.currentTarget.value});
+  }
+
+  render(){
+    return(
+      <div>
+          <label>
+            <textarea className = "status-update" name="name" value={this.state.textStatus} onChange = {(e) => this.handleChange(e)} placeholder = "Type your status update here"/>
+          </label>
+      </div>
+    );
+  }
+}
 
  class Title extends React.Component{
    title: Object = 
 
   <div className = "title">
-    <h1>TwitterSoton</h1>
-  </div>
+    <h1>Soton Tweet</h1>
+  </div>;
 
   render(){
     return this.title;
@@ -17,13 +47,15 @@ import './App.css';
 }
 
 class Feed extends React.Component{
-   items: Array<String> = ['Item 1', 'Item 2'];
+   items: Array<String> = ['Item 1', 'Item 2', 'Item 2', 'Item 2', 'Item 2', 'Item 2', 'Item 2', 'Item 2', 'Item 2', 'Item 2', 'Item 2', 'Item 2', 'Item 2'];
 
   render(){
     
     return(
       this.items.map((item) =>
+      <div className = "single-card">
         <ul>{item}</ul>
+      </div>
       )
     );
   }
@@ -33,12 +65,15 @@ class App extends React.Component{
   render(){
     return (
       <div>
-
-        <div>
-          <Title/>
-        </div>
-
+        <Title/>
+        <Status/>
+        <div className = "publish-button">
+          <Button>Publish</Button>
+        </div>  
         <div className = "cards-for-feed">
+          <div className = "feed-title">
+            <h2>Feed</h2>
+          </div>
           <Feed/>
         </div>
 
