@@ -1,5 +1,6 @@
 import * as React from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import {Button} from 'react-bootstrap';
 
 
@@ -14,8 +15,9 @@ class Status extends React.Component<{}, {textStatus: string;}>{
     this.handleChange = this.handleChange.bind(this);
   }
   
-  handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-
+  handleSubmit(e: any) {
+    console.log("blabla");
+    e.preventDefault();
   }
 
   handleChange(e: React.ChangeEvent<HTMLTextAreaElement>){
@@ -25,10 +27,16 @@ class Status extends React.Component<{}, {textStatus: string;}>{
   render(){
     return(
       <div>
-          <label>
-            <textarea className = "status-update" name="name" value={this.state.textStatus} onChange = {(e) => this.handleChange(e)} placeholder = "Type your status update here"/>
-          </label>
-      </div>
+        <div>
+            <label>
+              <textarea className = "status-update" name="name" value={this.state.textStatus} onChange = {(e) => this.handleChange(e)} placeholder = "Type your status update here"/>
+            </label>
+        </div>
+      
+        <div className = "publish-button">
+            <Button variant="outline-light" onSubmit = {(e:any) => this.handleSubmit(e)} >Publish</Button>
+        </div>
+      </div>  
     );
   }
 }
@@ -67,9 +75,6 @@ class App extends React.Component{
       <div>
         <Title/>
         <Status/>
-        <div className = "publish-button">
-          <Button>Publish</Button>
-        </div>  
         <div className = "cards-for-feed">
           <div className = "feed-title">
             <h2>Feed</h2>
